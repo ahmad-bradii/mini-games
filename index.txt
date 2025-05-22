@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Game & Word Master</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      h1 {
+        margin-top: 2rem;
+        color: #2d3748;
+      }
+      .nav {
+        margin: 2rem 0 1rem 0;
+        display: flex;
+        gap: 2rem;
+      }
+      .nav button {
+        font-size: 1.1rem;
+        padding: 0.5rem 1.5rem;
+        background: #3182ce;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+      }
+      .nav button.active,
+      .nav button:hover {
+        background: #2563eb;
+        transform: translateY(-2px) scale(1.03);
+      }
+      #content {
+        width: 100%;
+        max-width: 1000px;
+        min-height: 400px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        padding: 2rem 1.5rem;
+        margin-bottom: 2rem;
+        justify-content: center; /* changed from flex-start to center */
+        overflow-x: auto;
+      }
+      footer {
+        margin-top: auto;
+        color: #718096;
+        font-size: 0.95rem;
+      }
+      footer a {
+        color: #3182ce;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mini Game Hub</h1>
+    <div class="nav">
+      <button id="btn-typing-game" class="active">Typing Game</button>
+      <button id="btn-word-master">Word Master</button>
+    </div>
+    <div id="content"></div>
+    <footer>
+      <p>Mini Game Hub &copy; 2025</p>
+    </footer>
+    <script>
+      // HTML content for Typing Game
+      const typingGameHTML = `<h1>Typing game!</h1>
+<p>Practice your typing skills with a quote from Sherlock Holmes. Click <b>start</b> to begin!</p>
+<p id="quote"></p>
+<p id="message"></p>
+<div>
+  <input type="text" aria-label="current word" id="typed-value" />
+  <button type="button" id="start">Start</button>
+</div>
+<footer>
+  <p>Lerned From <a href="https://github.com/microsoft/Web-Dev-For-Beginners/blob/main/4-typing-game/typing-game/README.md">"Web-Dev-For-Beginners" By microsoft</a></p>
+</footer>`;
+
+      // HTML content for Word Master
+      const wordMasterHTML = `<header class="navbar">
+  <h1 class="brand">Word Masters</h1>
+  <h2 id="massege"></h2>
+</header>
+<div class="info-bar hidden">
+  <div class="spiral">🌀</div>
+</div>
+<div class="scoreboard"></div>`;
+
+      // Helper to load HTML and scripts/styles
+      function loadGame(html, cssPath, jsPath) {
+        const content = document.getElementById("content");
+        // Remove previous scripts/styles
+        Array.from(
+          document.querySelectorAll(".dynamic-style, .dynamic-script")
+        ).forEach((e) => e.remove());
+        // Set HTML
+        content.innerHTML = html;
+        // Add CSS
+        if (cssPath) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = cssPath;
+          link.className = "dynamic-style";
+          document.head.appendChild(link);
+        }
+        // Add JS (ensure it loads after DOM update)
+        if (jsPath) {
+          // Remove any previous dynamic script with same src
+          Array.from(document.querySelectorAll(".dynamic-script")).forEach(
+            (e) => {
+              if (e.src && e.src.endsWith(jsPath.replace("./", ""))) e.remove();
+            }
+          );
+          // Add script after DOM update
+          setTimeout(() => {
+            const script = document.createElement("script");
+            script.src = jsPath;
+            script.className = "dynamic-script";
+            document.body.appendChild(script);
+          }, 0);
+        }
+      }
+
+      // Initial load
+      loadGame(
+        typingGameHTML,
+        "./typing-game/style.css",
+        "./typing-game/script.js"
+      );
+
+      // Button events
+      document.getElementById("btn-typing-game").onclick = function () {
+        this.classList.add("active");
+        document.getElementById("btn-word-master").classList.remove("active");
+        loadGame(
+          typingGameHTML,
+          "./typing-game/style.css",
+          "./typing-game/script.js"
+        );
+      };
+      document.getElementById("btn-word-master").onclick = function () {
+        this.classList.add("active");
+        document.getElementById("btn-typing-game").classList.remove("active");
+        loadGame(
+          wordMasterHTML,
+          "./word-master/index.css",
+          "./word-master/index.js"
+        );
+      };
+    </script>
+  </body>
+</html>

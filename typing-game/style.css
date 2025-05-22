@@ -1,0 +1,105 @@
+/* inside style.css */
+.highlight {
+  background-color: yellow;
+}
+
+.error {
+  border: red !important;
+  color: red;
+}
+
+.passed {
+  color: green;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  color: #2d3748;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+}
+
+p {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+#quote {
+  font-size: 1.3rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  min-width: 320px;
+  color: #4a556867 !important;
+  min-height: 2.5rem;
+  max-width: 600px;
+}
+
+#message {
+  font-size: 1.1rem;
+  min-height: 1.5rem;
+  margin-bottom: 1rem;
+  color: rgb(255, 11, 145);
+}
+
+input[type="text"] {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+  margin-right: 0.5rem;
+  transition: border 0.2s;
+}
+
+input[type="text"]:focus {
+  border: 1.5px solid #3182ce;
+  background: #f0f8ff;
+}
+
+button {
+  font-size: 1.1rem;
+  padding: 0.5rem 1.2rem;
+  background: #3182ce;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 1px 4px rgba(49, 130, 206, 0.08);
+}
+
+button:hover {
+  background: #2563eb;
+  transform: translateY(-2px) scale(1.03);
+}
+
+footer {
+  margin-top: 3rem;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
